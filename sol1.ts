@@ -43,6 +43,3 @@ export default function merge(
 
   return res;
 }
-
-const res = merge([9, 7, 5, 3, 2], [0, 4, 7, 8, 10, 12], [2, 3, 4, 5, 95, 150, 256]);
-console.log(res);

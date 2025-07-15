@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "tsx",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -12,5 +12,10 @@
   "description": "",
   "dependencies": {
     "tsx": "^4.20.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "jest": "^30.0.4",
+    "ts-jest": "^29.4.0"
   }
 }

@@ -29,19 +29,26 @@ export default function merge(
   let collection_2_and_3_neg: number[] = [];
 
   while (j < collection_2.length || k < collection_3.length) {
-    if (collection_2[j] < 0) {
+    console.log(collection_2_and_3_neg, collection_2_and_3_pos);
+    if (collection_2[j] < 0 && collection_2[j] !== undefined) {
       collection_2_and_3_neg.push(collection_2[j]);
 
       j++;
-    } else if (collection_3[k] < 0) {
+    } else if (collection_3[k] < 0 && collection_3[k] !== undefined) {
       collection_2_and_3_neg.push(collection_3[k]);
 
       k++;
-    } else if (collection_2[j] < collection_3[k]) {
+    } else if (
+      (collection_2[j] < collection_3[k] || collection_3[k] === undefined) &&
+      collection_2[j] !== undefined
+    ) {
       collection_2_and_3_pos.push(collection_2[j]);
 
       j++;
-    } else {
+    } else if (
+      (collection_2[j] >= collection_3[k] || collection_2[j] === undefined) &&
+      collection_3[k] !== undefined
+    ) {
       collection_2_and_3_pos.push(collection_3[k]);
 
       k++;
@@ -57,7 +64,9 @@ export default function merge(
 
   while (i >= 0 || j < collection_2_and_3_pos.length || k < collection_2_and_3_neg.length) {
     const cur_min = Math.min(
-      ...[collection_1[i], collection_2_and_3_pos[j], collection_2_and_3_neg[k]].filter((v) => v !== undefined)
+      ...[collection_1[i], collection_2_and_3_pos[j], collection_2_and_3_neg[k]].filter(
+        (v) => v !== undefined
+      )
     );
 
     if (cur_min == collection_1[i]) {
@@ -83,10 +92,3 @@ export default function merge(
 
   return res;
 }
-
-const res = merge(
-  [21, 9, 7, 5, 3, 2],
-  [0, 4, -34, 7, -9, 8, 10, 12, -1],
-  [2, -74, -1, 3, 4, -45, 5, 95, 150, 256, -1]
-);
-console.log(res);
